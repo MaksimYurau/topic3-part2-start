@@ -43,7 +43,11 @@ private fun AppContent(viewModel: MainViewModel) {
     Crossfade(targetState = RedditRouter.currentScreen) { screenState: MutableState<Screen> ->
 
         Scaffold(
-            topBar = getTopBar(screenState.value, scaffoldState, coroutineScope),
+            topBar = getTopBar(
+                screenState.value,
+                scaffoldState,
+                coroutineScope
+            ),
             drawerContent = {
                 AppDrawer(
                     closeDrawerAction = { coroutineScope.launch { scaffoldState.drawerState.close() } }
@@ -72,7 +76,12 @@ fun getTopBar(
     if (screenState == Screen.MyProfile) {
         return {}
     } else {
-        return { TopAppBar(scaffoldState = scaffoldState, coroutineScope = coroutineScope) }
+        return {
+            TopAppBar(
+                scaffoldState = scaffoldState,
+                coroutineScope = coroutineScope
+            )
+        }
     }
 }
 
