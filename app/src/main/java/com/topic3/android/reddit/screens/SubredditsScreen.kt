@@ -79,6 +79,54 @@ fun Subreddit(subredditModel: SubredditModel, modifier: Modifier = Modifier) {
 @Composable
 fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier) {
     //TODO add your code here
+    ConstraintLayout(
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colors.onSurface)
+    ) {
+        val (backgroundImage, icon, name, members, description) = createRefs() // 1
+
+        SubredditImage( // 2
+            modifier = modifier.constrainAs(backgroundImage) {
+            centerHorizontallyTo(parent)
+                top.linkTo(parent.top)
+        }
+        )
+
+        SubredditImage( // 3
+            modifier = modifier
+                .constrainAs(icon) {
+                    top.linkTo(backgroundImage.bottom)
+                    bottom.linkTo(backgroundImage.bottom)
+                    centerHorizontallyTo(parent)
+                }
+                .zIndex(1f)
+        )
+
+        SubredditName( // 4
+            nameStringRes = subredditModel.nameStringRes,
+            modifier = modifier.constrainAs(members) {
+                top.linkTo(name.bottom)
+                centerHorizontallyTo(parent)
+            }
+        )
+
+        SubredditMembers( // 5
+            membersStringRes = subredditModel.membersStringRes,
+            modifier = modifier.constrainAs(members) {
+                top.linkTo(name.bottom)
+                centerHorizontallyTo(parent)
+            }
+        )
+
+        SubredditDescription( // 5
+            descriptionStringRes = subredditModel.descriptionStringRes,
+            modifier = modifier.constrainAs(members) {
+                top.linkTo(name.bottom)
+                centerHorizontallyTo(parent)
+            }
+        )
+    }
 }
 
 @Composable
