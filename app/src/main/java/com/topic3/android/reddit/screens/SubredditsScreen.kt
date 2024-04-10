@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Colors
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -31,6 +32,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.topic3.android.reddit.R
 import com.topic3.android.reddit.components.BackgroundText
 import com.topic3.android.reddit.models.SubredditModel
+import com.topic3.android.reddit.theme.RwPrimary
 
 val subreddits = listOf(
     SubredditModel(
@@ -110,7 +112,7 @@ fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier)
     ConstraintLayout(
         modifier = modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colors.onSurface)
+            .background(color = RwPrimary)
     ) {
         val (backgroundImage, icon, name, members, description) = createRefs() // 1
 
