@@ -73,7 +73,17 @@ fun SubredditsScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun Subreddit(subredditModel: SubredditModel, modifier: Modifier = Modifier) {
-    //TODO add your code here
+    Card(
+        backgroundColor = MaterialTheme.colors.onSurface,
+        shape = RoundedCornerShape(4.dp),
+        modifier = modifier
+            .size(120.dp)
+            .padding(
+                start = 2.dp, end = 2.dp, top = 4.dp, bottom = 4.dp
+            )
+    ) {
+        SubredditBody(subredditModel)
+    }
 }
 
 @Composable
@@ -93,7 +103,7 @@ fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier)
         }
         )
 
-        SubredditImage( // 3
+        SubredditIcon( // 3
             modifier = modifier
                 .constrainAs(icon) {
                     top.linkTo(backgroundImage.bottom)
@@ -105,8 +115,8 @@ fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier)
 
         SubredditName( // 4
             nameStringRes = subredditModel.nameStringRes,
-            modifier = modifier.constrainAs(members) {
-                top.linkTo(name.bottom)
+            modifier = modifier.constrainAs(name) {
+                top.linkTo(icon.bottom)
                 centerHorizontallyTo(parent)
             }
         )
@@ -121,8 +131,8 @@ fun SubredditBody(subredditModel: SubredditModel, modifier: Modifier = Modifier)
 
         SubredditDescription( // 5
             descriptionStringRes = subredditModel.descriptionStringRes,
-            modifier = modifier.constrainAs(members) {
-                top.linkTo(name.bottom)
+            modifier = modifier.constrainAs(description) {
+                top.linkTo(members.bottom)
                 centerHorizontallyTo(parent)
             }
         )
@@ -191,7 +201,7 @@ fun Communities(modifier: Modifier = Modifier) {
     //TODO add your code here
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun SubredditBodyPreview() {
     SubredditBody(SubredditModel.DEFAULT_SUBREDDIT)
